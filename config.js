@@ -1,0 +1,1 @@
+window.YT_CONFIG = { API_KEY: "AIzaSyBiHWm_x0jMB2Wy8LGww_KslVAwfrSaKaA", REGION: "ID" };

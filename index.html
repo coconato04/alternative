@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Lite v2</title>
+  <link rel="icon" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="left">
+      <button id="menuBtn" aria-label="Toggle Sidebar" title="Menu">☰</button>
+      <a href="#home" class="brand" aria-label="Home">YTLite v2</a>
+    </div>
+
+    <form id="searchForm" class="search-bar" role="search" aria-label="Search">
+      <input id="searchInput" type="search" placeholder="Cari video..." aria-label="Search query" />
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+
+    <div class="right">
+      <a class="gh" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <aside id="sidebar" class="sidebar">
+    <nav>
+      <a href="#home" class="nav-item">Home</a>
+      <a href="#search?q=music" class="nav-item">Music</a>
+      <a href="#search?q=gaming" class="nav-item">Gaming</a>
+      <a href="#search?q=news" class="nav-item">News</a>
+      <a href="#search?q=tutorial" class="nav-item">Tutorial</a>
+    </nav>
+  </aside>
+
+  <main id="app">
+    <!-- Filters (only visible on search) -->
+    <section id="filters" class="filters hidden" aria-label="Search filters">
+      <label>Order:
+        <select id="orderSelect">
+          <option value="relevance">Relevance</option>
+          <option value="date">Upload date</option>
+          <option value="viewCount">View count</option>
+          <option value="title">Title</option>
+        </select>
+      </label>
+      <label>SafeSearch:
+        <select id="safeSelect">
+          <option value="none">None</option>
+          <option value="moderate">Moderate</option>
+          <option value="strict">Strict</option>
+        </select>
+      </label>
+      <button id="applyFilters" class="btn">Apply</button>
+    </section>
+
+    <!-- FEED -->
+    <section id="feed" class="feed-grid" aria-live="polite"></section>
+
+    <!-- SEARCH RESULTS -->
+    <section id="results" class="results-grid hidden" aria-live="polite"></section>
+    <div id="pager" class="pager hidden">
+      <button id="loadMore" class="btn">Load more</button>
+    </div>
+
+    <!-- WATCH PAGE -->
+    <section id="watch" class="watch-page hidden" aria-live="polite">
+      <div class="watch-left">
+        <div class="player-wrapper">
+          <iframe id="player" class="player" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <h1 id="videoTitle" class="video-title"></h1>
+        <div id="videoMeta" class="video-meta"></div>
+        <div id="videoDesc" class="video-desc"></div>
+      </div>
+      <aside class="watch-right">
+        <h3>Related</h3>
+        <div id="related" class="related-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <a class="thumb-link"><img class="thumb" alt=""><span class="duration"></span></a>
+      <div class="card-body">
+        <a class="title"></a>
+        <div class="meta">
+          <img class="avatar" alt="Channel icon" />
+          <div class="byline">
+            <span class="channel"></span>
+            <span class="stats"></span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="config.js"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
